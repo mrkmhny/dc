@@ -2,20 +2,20 @@
 <div class="entrance">
   <div id="dc-logo" class="entrance__logo">[LOGO GOES HERE]</div> <!-- TODO: change to img tag -->
     <form class="entrance__form">
-      <input 
-        v-model="nickname" type="text" 
-        name="nickname" id="entrance__input--nickname" 
+      <input
+        v-model="nickname" type="text"
+        name="nickname" id="entrance__input--nickname"
         class="entrance__input" placeholder="Enter Your Name"
       >
       <div class="entrance__buttons">
-        <button 
+        <button
           id="entrance__button--start" class="entrance__button"
           v-on:click="startGame($event)"
         >
           Start Game
         </button>
-        <button 
-          id="button-join" disabled="disabled" 
+        <button
+          id="button-join" disabled="disabled"
           class="entrance__button entrance__button--join"
         >
           Join Game
