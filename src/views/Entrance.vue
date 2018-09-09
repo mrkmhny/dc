@@ -26,6 +26,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 
 export default {
   name: 'entrance',
@@ -39,11 +40,22 @@ export default {
   methods: {
     startGame: function startGame(event) {
       event.preventDefault();
-      const roomName = Math.floor((Math.random() * 900) + 100);
-      this.roomName = roomName;
-      console.log(`Creating room ${roomName}`);
+      // const roomId = Math.floor((Math.random() * 900) + 100);
+      const roomId = 111;
+      this.$store.commit('setRoomId', roomId);
+      console.log(`Attempting to creating room ${this.roomName}`);
       console.log(`Your name is ${this.nickname}`);
+      this.$socket.emit('joinRoom', {
+        roomId: this.roomId,
+        nickname: this.nickname,
+      });
     },
+  },
+  computed: {
+    ...mapState([
+      'roomId',
+      'players'
+    ]),
   },
 };
 </script>
@@ -53,6 +65,7 @@ export default {
     display: flex;
     flex-direction: column;
     padding-top: 20px;
+    background: #42f1f4;
 
     &__logo {
     }
