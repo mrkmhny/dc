@@ -46,10 +46,10 @@ export default {
     ]),
   },
   watch: {
-    ready: function (ready) {
-      this.$socket.emit('userReady', {ready});
-    }
-  }
+    ready: function onReadyChange(ready) {
+      this.$socket.emit('userReady', { ready });
+    },
+  },
 };
 </script>
 

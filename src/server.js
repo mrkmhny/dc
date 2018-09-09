@@ -72,10 +72,10 @@ io.on('connection', (socket) => {
     io.emit('userDisconnected', Object.keys(io.sockets.sockets)); // Not necessary for client to know
   });
 
- socket.on('vote', function (vote) {
-   console.log('vote: ' + vote);
-   io.emit('voteSuccess', { for: 'everyone' });
- });
+  socket.on('vote', (vote) => {
+    console.log(`vote: ${vote}`);
+    io.emit('voteSuccess', { for: 'everyone' });
+  });
 });
 
 http.listen(3000, () => {

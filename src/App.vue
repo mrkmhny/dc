@@ -46,25 +46,25 @@ import io from 'socket.io-client';
 export default {
   name: 'app',
   sockets: {
-    connect: function() {
+    connect: function onConnect() {
       console.log('Connected to socket.io');
       // TODO: Save socket id in store to identify which socket is you.
     },
-    customError: function(err) {
+    customError: function onCustomError(err) {
       console.error(err.msg);
     },
-    selfJoinedRoom: function(res) {
+    selfJoinedRoom: function onSelfJoinedRoom (res) {
       console.log(res.msg);
-      this.$router.push({name: 'room', params: { roomId: res.roomId }})
+      this.$router.push({name: 'room', params: { roomId: res.roomId }});
     },
-    playerJoinedRoom: function(res) {
+    playerJoinedRoom: function onPlayerJoinedRoom(res) {
       console.log('playerJoinedRoom', res);
       this.$store.commit('setPlayers', res.roomPlayers);
     },
-    playerLeftRoom: function userLeftRoom(res) {
+    playerLeftRoom: function onPlayerLeftRoom(res) {
       console.log(res.msg);
-    }
+    },
   },
-}
+};
 </script>
 

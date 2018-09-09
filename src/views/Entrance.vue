@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState } from 'vuex';
 
 export default {
   name: 'entrance',
@@ -54,7 +54,7 @@ export default {
   computed: {
     ...mapState([
       'roomId',
-      'players'
+      'players',
     ]),
   },
 };
@@ -66,9 +66,6 @@ export default {
     flex-direction: column;
     padding-top: 20px;
     background: #42f1f4;
-
-    &__logo {
-    }
 
     &__form {
       margin-top: 30px;
