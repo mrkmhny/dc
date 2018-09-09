@@ -35,26 +35,23 @@ io.on('connection', (socket) => {
     socket.nickname = data.nickname;
     console.log(`Incoming request from ${socket.nickname} to join room ${data.roomId}`);
     socket.join(data.roomId, () => {
-      socket.roomId = data.roomId;
       console.log(`${socket.id} joined room ${data.roomId}`);
-      const roomPlayers = Object.keys(io.sockets.adapter.rooms[data.roomId].sockets)
+      socket.roomId = data.roomId;
+      const players = Object.keys(io.sockets.adapter.rooms[data.roomId].sockets)
         .map(clientId => ({
           nickname: io.sockets.connected[clientId].nickname,
           id: io.sockets.connected[clientId].id,
         }));
-      // Object.keys(io.sockets.adapter.rooms[data.roomId].sockets).forEach((socketId) => {
-      //   roomPlayers.push(io.sockets.clients[socketId]);
-      // });
-      console.log('roomPlayers', roomPlayers);
+      console.log('players', players);
       socket.emit('selfJoinedRoom', {
         msg: `You joined room ${data.roomId}`,
         roomId: data.roomId,
-        roomPlayers,
+        players,
       });
       socket.broadcast.to(data.roomId).emit('playerJoinedRoom', {
         msg: `${socket.name} has joined the room`,
         joinedPlayer: socket.id,
-        roomPlayers,
+        players,
       });
     });
   });
