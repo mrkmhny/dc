@@ -50,6 +50,9 @@ export default {
       console.log('Connected to socket.io');
       // TODO: Save socket id in store to identify which socket is you.
     },
+    customError: function(err) {
+      console.error(err.msg);
+    },
     selfJoinedRoom: function(res) {
       console.log(res.msg);
       this.$router.push({name: 'room', params: { roomId: res.roomId }})
