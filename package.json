@@ -6,12 +6,18 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "test:unit": "vue-cli-service test:unit"
+    "test:unit": "vue-cli-service test:unit",
+    "sockets": "nodemon src/server.js"
   },
   "dependencies": {
+    "express": "^4.16.3",
     "register-service-worker": "^1.0.0",
+    "socket.io": "^2.0.4",
+    "socket.io-client": "^2.1.1",
     "vue": "^2.5.17",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "vue-socket.io": "^2.1.1-b",
+    "vuex": "^3.0.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.1",
