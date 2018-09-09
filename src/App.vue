@@ -9,14 +9,8 @@
 </template>
 
 <style lang="scss">
-  html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-  }
-  * {
-    margin: 0;
-    box-sizing: border-box;
+  ul {
+    list-style: none;
   }
 
   #app {
@@ -42,7 +36,6 @@
 </style>
 
 <script>
-import io from 'socket.io-client';
 export default {
   name: 'app',
   sockets: {
@@ -53,13 +46,14 @@ export default {
     customError: function onCustomError(err) {
       console.error(err.msg);
     },
-    selfJoinedRoom: function onSelfJoinedRoom (res) {
+    selfJoinedRoom: function onSelfJoinedRoom(res) {
       console.log(res.msg);
-      this.$router.push({name: 'room', params: { roomId: res.roomId }});
+      this.$router.push({ name: 'room', params: { roomId: res.roomId } });
+      this.$store.commit('setPlayers', res.players);
     },
     playerJoinedRoom: function onPlayerJoinedRoom(res) {
-      console.log('playerJoinedRoom', res);
-      this.$store.commit('setPlayers', res.roomPlayers);
+      console.log('playerJoinedRoom', res.msg);
+      this.$store.commit('setPlayers', res.players);
     },
     playerLeftRoom: function onPlayerLeftRoom(res) {
       console.log(res.msg);

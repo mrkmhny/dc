@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import io from 'socket.io-client';
 import VueSocketio from 'vue-socket.io';
+import 'normalize.css';
 import App from './App.vue';
 import router from './router';
 import store from './store';
