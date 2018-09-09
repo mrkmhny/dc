@@ -4,7 +4,12 @@
     'room--unready': !ready
     }">
     <ul class="room__players">
-      <li class="room__player"></li>
+      <Player
+        v-for="player in players"
+        :key="player.id"
+        v-bind:player="player"
+        class="room__player"
+      ></Player>
     </ul>
     <h1>You are in room {{ roomId }}</h1>
     <h3>Waiting for all players...</h3>
@@ -25,6 +30,7 @@
     //   margin-right: 0;
     // }
     &__players {
+      display: flex;
       width: 100%;
     }
   }
@@ -32,9 +38,13 @@
 
 <script>
 import { mapState } from 'vuex';
+import Player from '@/components/Player.vue';
 
 export default {
   name: 'room',
+  components: {
+    Player,
+  },
   data: function data() {
     return {
       ready: false,
@@ -43,7 +53,11 @@ export default {
   computed: {
     ...mapState([
       'roomId',
+      'players',
     ]),
+  },
+  mounted() {
+    console.log('players', this.players);
   },
   watch: {
     ready: function onReadyChange(ready) {
